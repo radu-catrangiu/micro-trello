@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <div class="logo">
-      <h1>μTrello</h1>
-    </div>
+    <b-container class="logo">
+      <b-row align-h="start">
+        <h1 class="mx-3 mt-2">μTrello</h1>
+      </b-row>
+    </b-container>
     <router-view/>
   </div>
 </template>
