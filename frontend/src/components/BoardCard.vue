@@ -1,11 +1,11 @@
 <template>
   <div>
     <b-card no-body class="overflow-hidden mb-2 mx-auto" style="max-width: 20rem;">
-      <b-card-img
+      <b-card-img 
         v-on:click="openBoard"
         v-bind:src="'https://picsum.photos/600/300/?image=' + boardCard.imgNumber"
         class="open-btn-picture rounded-0"
-      ></b-card-img>
+      />
       <b-card-body>
         <b-card-title v-if="!editable" v-bind:title="boardCard.title"></b-card-title>
         <b-form-input class="mb-2 text-center" size="lg" v-if="editable" v-model="newTitle"></b-form-input>
@@ -76,5 +76,10 @@ export default {
 <style>
 .open-btn-picture {
   cursor: pointer;
+}
+
+.open-btn-picture:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 </style>
