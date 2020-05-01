@@ -1,10 +1,12 @@
+var env = process.env;
+
 module.exports = {
-    port: 8081,
+    port: env.PORT || 8081,
     mongo: {
-        host: 'ds018839.mlab.com',
-        port: 18839,
-        database: 'dss',
-        dbuser: 'user',
-        dbpassword: 'qwerty12'
+        host: env.MONGO_HOST || 'ds018839.mlab.com',
+        port: env.MONGO_PORT || 18839,
+        database: env.MONGO_DB || 'dss',
+        dbuser: env.MONGO_USER || 'user',
+        dbpassword: env.MONGO_PASS || 'qwerty12'
     }
 };
