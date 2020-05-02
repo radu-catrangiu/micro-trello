@@ -1,6 +1,6 @@
 <template>
   <b-list-group class="mb-4">
-    <b-list-group-item active class="flex-column align-items-start">
+    <b-list-group-item variant="dark" class="flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
         <h3 v-if="!editable" class="mb-1">{{list.title}}</h3>
         <b-form-input class="mb-2 text-center" size="lg" v-if="editable" v-model="newTitle"></b-form-input>

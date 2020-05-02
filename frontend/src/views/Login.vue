@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <b-row class="m-5">
-      <b-col>
+      <b-col class="mt-5">
         <h1 class="logo">μTrello</h1>
       </b-col>
     </b-row>
@@ -17,6 +17,7 @@
               required
               placeholder="Enter username"
               @keyup.enter="login"
+              size="lg"
             ></b-form-input>
           </b-form-group>
 
@@ -28,11 +29,12 @@
               required
               placeholder="Enter password"
               @keyup.enter="login"
+              size="lg"
             ></b-form-input>
           </b-form-group>
 
-          <b-button @click="login" variant="primary" class="m-2">Login</b-button>
-          <b-button @click="register" variant="warning" class="m-2">Register</b-button>
+          <b-button @click="login" size="lg" variant="primary" class="m-2">Login</b-button>
+          <b-button @click="register" size="lg" variant="warning" class="m-2">Register</b-button>
         </b-form>
       </b-col>
       <b-col>&nbsp;</b-col>
@@ -112,7 +114,7 @@ export default {
 
 <style>
 .logo {
-  font-size: 10vh;
+  font-size: 12vh;
   color: #cfcfcf;
   font-weight: bold;
 }
