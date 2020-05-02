@@ -1,4 +1,4 @@
-# assignment
+# microtrello
 
 ## Project setup
 ```
