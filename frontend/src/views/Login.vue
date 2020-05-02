@@ -2,7 +2,7 @@
   <b-container>
     <b-row class="m-5">
       <b-col class="mt-5">
-        <h1 class="logo">μTrello</h1>
+        <h1 class="logo noselect">μTrello</h1>
       </b-col>
     </b-row>
     <b-row class="mt-5">

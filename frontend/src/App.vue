@@ -4,7 +4,7 @@
       <b-row class="mx-2 mt-3" align-h="between">
         <b-col>
           <b-row align-h="start">
-            <h2 class="top-logo">μTrello</h2>
+            <h2 class="top-logo noselect">μTrello</h2>
           </b-row>
         </b-col>
         <b-col>
@@ -36,6 +36,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
 }
 
 #app .top-logo {
