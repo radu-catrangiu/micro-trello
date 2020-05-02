@@ -7,8 +7,13 @@ import VueCookies from 'vue-cookies'
 Vue.use(BootstrapVue)
 Vue.use(VueCookies)
 
-Vue.prototype.apiUrl = "http://localhost:8081/api/"
-Vue.prototype.authUrl = "http://localhost:8082/auth/"
+if (process.env.NODE_ENV === "production") {
+  Vue.prototype.apiUrl = location.origin + "/api/"
+  Vue.prototype.authUrl = location.origin + "/auth/"
+} else {
+  Vue.prototype.apiUrl = "http://localhost:8081/api/"
+  Vue.prototype.authUrl = "http://localhost:8082/auth/"
+}
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
