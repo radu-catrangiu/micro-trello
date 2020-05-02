@@ -1,0 +1,73 @@
+version: '3.1'
+
+networks:
+    net:
+
+volumes:
+    mongo_data: {}
+
+services:
+    database:
+        image: mongo
+        container_name: database
+        ports:
+            - '27017:27017'
+        environment:
+            MONGO_INITDB_DATABASE: microtrello
+            MONGO_INITDB_ROOT_USERNAME: rootuser
+            MONGO_INITDB_ROOT_PASSWORD: rootpass
+        networks:
+            - net
+        volumes:
+            - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+            - mongo_data:/data/db
+
+    frontend:
+        image: microtrello-frontend:latest
+        ports:
+            - '80:80'
+        depends_on:
+            - backend
+            - auth-service
+        networks:
+            - net
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: any
+
+    backend:
+        image: microtrello-backend:latest
+        depends_on:
+            - database
+        environment:
+            PORT: 8080
+            MONGO_HOST: database
+            MONGO_PORT: 27017
+            MONGO_DB: microtrello
+            MONGO_USER: robot
+            MONGO_PASS: qwerty123zxc
+        networks:
+            - net
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: any
+
+    auth-service:
+        image: microtrello-auth-service:latest
+        depends_on:
+            - database
+        environment:
+            PORT: 8080
+            MONGO_HOST: database
+            MONGO_PORT: 27017
+            MONGO_DB: microtrello
+            MONGO_USER: robot
+            MONGO_PASS: qwerty123zxc
+        networks:
+            - net
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: any
