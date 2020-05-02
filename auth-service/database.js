@@ -14,7 +14,10 @@ var url = "mongodb://"
 
 function init(app, callback) {
     mongodb.connect(url, (error, client) => {
-        console.error(url);
+        if (error) {
+            console.error(error);
+            process.exit(1);
+        }
         var database = client.db();
         var collection = database.collection("users");
         
