@@ -54,7 +54,7 @@ export default {
       method: "get",
       baseURL: this.apiUrl,
       url: "/boards/list",
-      headers: { login_token }
+      headers: { "x-login-token": login_token }
     };
     axios(config).then(result => {
       this.boards = result.data;
@@ -82,7 +82,7 @@ export default {
         params: {
           board_id: board.board_id
         },
-        headers: { login_token }
+        headers: { "x-login-token": login_token }
       };
       axios(config).then(() => {
         this.boards.splice(index, 1);
@@ -104,7 +104,7 @@ export default {
         params: {
           title: this.newBoard.title
         },
-        headers: { login_token }
+        headers: { "x-login-token": login_token }
       };
       axios(config).then(result => {
         this.boards.push(result.data);

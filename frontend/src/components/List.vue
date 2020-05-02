@@ -71,7 +71,7 @@ export default {
             title,
             description
           },
-          headers: { login_token }
+          headers: { "x-login-token": login_token }
         };
         axios(config).then(result => {
           this.list.cards.push(result.data);
@@ -96,7 +96,7 @@ export default {
             title,
             description
           },
-          headers: { login_token }
+          headers: { "x-login-token": login_token }
         };
         axios(config).then(() => {
           card.title = title;
@@ -119,7 +119,7 @@ export default {
           list_id: this.list.list_id,
           card_id: card.card_id
         },
-        headers: { login_token }
+        headers: { "x-login-token": login_token }
       };
       axios(config).then(() => {
         this.list.cards.splice(index, 1);
@@ -147,7 +147,7 @@ export default {
               list_id: this.list.list_id,
               title: this.newTitle
             },
-            headers: { login_token }
+            headers: { "x-login-token": login_token }
           };
           axios(config).then(() => {
             this.list.title = this.newTitle;

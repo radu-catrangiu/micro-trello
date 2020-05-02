@@ -5,7 +5,8 @@ var initDatabase = require('./database');
 var uuid = require('uuid').v4;
 
 function auth_middleware(req, res, next) {
-    var login_token = req.headers.login_token;
+    console.log(req.headers);
+    var login_token = req.headers['x-login-token'];
     var users = expressApp.get('users');
 
     users.findOne({ login_token }, (error, result) => {

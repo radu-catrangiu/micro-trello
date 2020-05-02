@@ -59,7 +59,7 @@ export default {
               board_id: this.boardCard.board_id,
               title: this.newTitle
             },
-            headers: { login_token }
+            headers: { "x-login-token": login_token }
           };
           axios(config).then(() => {
             this.boardCard.title = this.newTitle;
