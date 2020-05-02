@@ -9,7 +9,6 @@ volumes:
 services:
     database:
         image: mongo
-        container_name: database
         ports:
             - '27017:27017'
         environment:
@@ -71,3 +70,51 @@ services:
             replicas: 1
             restart_policy:
                 condition: any
+
+    grafana:
+        image: grafana/grafana
+        depends_on:
+            - prometheus
+        ports:
+            - 3000:3000
+        volumes:
+            - ./grafana/:/etc/grafana/provisioning/
+        environment:
+            GF_SECURITY_ADMIN_PASSWORD: "qwerty123"
+            GF_USERS_ALLOW_SIGN_UP: "false"
+            GF_AUTH_ANONYMOUS_ENABLED: "true"
+        networks:
+            - net
+        restart: always
+
+    prometheus:
+        image: prom/prometheus
+        volumes:
+            - ./prometheus/:/etc/prometheus/
+        command:
+            - '--config.file=/etc/prometheus/prometheus.yml'
+            - '--storage.tsdb.path=/prometheus'
+            - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+            - '--web.console.templates=/usr/share/prometheus/consoles'
+        ports:
+            - 3001:9090
+        networks:
+            - net
+        restart: always
+
+    cadvisor:
+        image: google/cadvisor:latest
+        ports:
+            - 3002:8080
+        volumes:
+            - /:/rootfs:ro
+            - /var/run:/var/run:rw
+            - /sys:/sys:ro
+            - /var/lib/docker/:/var/lib/docker:ro
+        networks: 
+            - net
+        depends_on:
+            - frontend
+            - backend
+            - auth-service
+            - database
